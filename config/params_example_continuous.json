@@ -1,0 +1,11 @@
+{    "loss_coefs": {
+    "mse":1,
+    "PSD":10,
+    "clst_regr": 1,
+    "clst_class_specific":true,
+    "clst_delta" :0.5,
+    "clst_kmin": 3},
+"network_params":{
+    "proto_activation" : "exp_norm"},
+"labels" : "fussy"
+}

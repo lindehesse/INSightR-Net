@@ -1,0 +1,12 @@
+python 3.7 
+pytorch 1.8 # conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch-lts
+imageio # conda install -c conda-forge imageio
+augmentor # pip install Augmentor
+opencv # conda install -c conda-forge opencv
+mlflow # conda install -c conda-forge mlflow
+scikit-learn # conda install -c conda-forge scikit-learn 
+enforce-typing # pip install enforce-typing
+dataclass_json # pip install dataclasses-json
+pytorch-lightning # pip install pytorch-lightning
+scikit-image #conda install scikit-image
+matplotlib
