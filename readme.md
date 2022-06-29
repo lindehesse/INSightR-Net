@@ -18,9 +18,9 @@ The datasplits used for this study are given in config/datasplit, and demonstrat
 
 The INSightR-Net can be trained using
 
-    python main_trainer.py --param_jsonpath=config/params_example_ordinal.json --datapath=datapath --savepath=savepath --pretrained_path=config/pretrained_model.ckpt
+    python main_trainer.py --param_jsonpath=config/params_example_ordinal.json --datapath=datapath --savepath=savepath --pretrained_path=pretrained_model.ckpt
 
-with datapath the path containing the pre-processed images, savepath the path where to save the trained model, and pretrained_path the path to a pretrained model checkpoint. The script can also be run without a pretrained model, but this did not result in convergence in our experiments.
+with datapath the path containing the pre-processed images, savepath the path where to save the trained model, and pretrained_path the path to a pretrained model checkpoint. The script can also be run without a pretrained model, but this did not result in convergence in our experiments. The pretrained model used in this study can be downloaded under 'releases' in the repository.
 
 Param_json path should contain the parameter file used for training. All parameters used in this study are defined in 'define_parameters.py', all of these parameters can be overwritten in a .json file. The parameters varied in this study are given in 'params_example_ordinal.json' (for ordinal labels) and 'params_example_continuous.json' (for continuous labels, given in supplementary). 
 
@@ -28,7 +28,7 @@ A pre-trained model on other data can be obtained using the baseline model train
 
     python main_trainer_baseline.py --param_jsonpath=config/params_example_baseline.json --datapath=datapath --savepath=savepath
 
-For the experiment presented in the paper, we trained our baseline starting from the same pretrained_path as the InSightR-Net. This can be replicated using:
+For the experiment presented in the paper, we trained our baseline starting from the same pretrained_path as the INSightR-Net. This can be replicated using:
 
     python main_trainer_baseline.py --param_jsonpath=config/params_example_baseline.json --datapath=datapath --savepath=savepath --pretrained_path=config/pretrained_model.ckpt
 
