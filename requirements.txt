@@ -1,12 +1,16 @@
-python 3.7 
-pytorch 1.8 # conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch-lts
-imageio # conda install -c conda-forge imageio
-augmentor # pip install Augmentor
-opencv # conda install -c conda-forge opencv
-mlflow # conda install -c conda-forge mlflow
-scikit-learn # conda install -c conda-forge scikit-learn 
-enforce-typing # pip install enforce-typing
-dataclass_json # pip install dataclasses-json
-pytorch-lightning # pip install pytorch-lightning
-scikit-image #conda install scikit-image
-matplotlib
+# conda create --new insight_env python==3.7 
+# conda install pytorch==1.8.1 torchvision==0.9.1 torchaudio==0.8.1 -c pytorch
+# then install with pip: "pip install -r requirements.txt"
+imageio==2.22.2
+Augmentor==0.2.10
+opencv-python==4.6.0.66
+mlflow==1.29.0
+scikit-learn==0.24.1
+enforce-typing==1.0.0.post1
+dataclasses_json==0.5.7
+pytorch-lightning==1.6.5.
+scikit-image==0.19.3
+matplotlib==3.4.0
+torchmetrics==0.11.4
+seaborn
+urllib3==1.26.6

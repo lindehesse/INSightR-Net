@@ -54,20 +54,20 @@ class LitModelProto(pl.LightningModule):
         self.automatic_optimization = False
 
         # Set accuracy metric
-        self.train_accuracy = torchmetrics.Accuracy()
-        self.val_accuracy = torchmetrics.Accuracy(compute_on_step=False)
-        self.test_accuracy = torchmetrics.Accuracy(compute_on_step=False)
+        self.train_accuracy = torchmetrics.Accuracy(task='multiclass', num_classes=5)
+        self.val_accuracy = torchmetrics.Accuracy(task='multiclass', num_classes=5)
+        self.test_accuracy = torchmetrics.Accuracy(task='multiclass', num_classes=5)
 
         # Set kapp metrics
-        self.train_kappa = torchmetrics.CohenKappa(5, weights='quadratic')
+        self.train_kappa = torchmetrics.CohenKappa(task='multiclass', num_classes=5, weights='quadratic')
         self.val_kappa = torchmetrics.CohenKappa(
-            5, weights='quadratic', compute_on_step=False)
+           task='multiclass', num_classes=5, weights='quadratic')
         self.test_kappa = torchmetrics.CohenKappa(
-            5, weights='quadratic', compute_on_step=False)
+            task='multiclass', num_classes=5, weights='quadratic')
 
         # Set matrix for confusion matrix
-        self.val_confmatrix = torchmetrics.ConfusionMatrix(5)
-        self.test_confmatrix = torchmetrics.ConfusionMatrix(5)
+        self.val_confmatrix = torchmetrics.ConfusionMatrix(task='multiclass', num_classes=5)
+        self.test_confmatrix = torchmetrics.ConfusionMatrix(task='multiclass', num_classes=5)
 
         # Initialize metrics to quantify sparsity as percentage weights needed for explanation
         self.val_sparsity_80 = MySparsity(level=0.8)
@@ -528,7 +528,7 @@ class LitModelProto(pl.LightningModule):
         savepath_emb = self.params.save_path_ims / 'embeddings'
         savepath_emb.mkdir(parents=True, exist_ok=True)
 
-        for embed_type in ['pca', 'tsne']:
+        for embed_type in ['pca']:
             for dim in ['2D', '3D']:
                 embed = self.ppnet.prototype_vectors.detach()
                 plot_embeddings(embed,
@@ -636,11 +636,6 @@ class LitModelProto(pl.LightningModule):
 
                 self.save_model('after_protopushing')
 
-            # Syncronizes parameters between models  (not sure this is necessary)
-            if self.trainer.gpus > 1:
-                torch.cuda.synchronize()
-                self.trainer.training_type_plugin.model._sync_params_and_buffers(
-                    authoritative_rank=0)
 
     def init_warmonly(self):
         """ Set required gradients for feature layers to false
