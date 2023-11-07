@@ -75,5 +75,5 @@ if __name__ == '__main__':
 
         # process all images
         ims = list(total_path.glob('*.jpeg'))
-        for im in tqdm(ims, savepath = total_savepath):
-            preprocess_im(im)
+        for im in tqdm(ims):
+            preprocess_im(im, savepath = total_savepath)
